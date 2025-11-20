@@ -2,6 +2,7 @@
 
 @section('content')
 
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="overlay">
@@ -30,7 +31,7 @@
                     <div class="row g-3">
                         @foreach($pastCamps->take(3) as $camp)
                         <div class="col-md-4">
-                            <div class="card shadow-sm">
+                            <div class="card shadow-sm custom-hover">
                                 <a href="{{ route('frontbloodcamp.index',$camp->id) }}" class="text-decoration-none ">
                                     <img src="{{ asset('images/camps/'.$camp->image) }}" class="card-img-top rounded"
                                         alt="Gallery 1" style="height:200px;width=100px">
@@ -193,7 +194,7 @@
                                 “Working with your team has been an absolute pleasure. Their dedication and professionalism
                                 helped us save countless lives through blood donation campaigns.”
                             </p>
-                            <h5 class="card-title mt-3 mb-0">— John Doe</h5>
+                            <h5 class="card-title mt-3 mb-0">— Aniket Mandal</h5>
                             <small class="text-muted">CEO, LifeSaver Org</small>
                         </div>
                     </div>
@@ -210,7 +211,7 @@
                                 “Working with your team has been an absolute pleasure. Their dedication and professionalism
                                 helped us save countless lives through blood donation campaigns.”
                             </p>
-                            <h5 class="card-title mt-3 mb-0">— Jane Smith</h5>
+                            <h5 class="card-title mt-3 mb-0">— Linda Subedi</h5>
                             <small class="text-muted">Community Leader</small>
                         </div>
                     </div>
@@ -220,13 +221,13 @@
                 <div class="col-md-4">
                     <div class="card bg-white text-dark shadow text-center">
                         <div class="card-body">
-                            <img src="{{ asset('images/testimonial/client1.jpg') }}" alt="Client Name 3"
+                            <img src="{{ asset('images/testimonial/jenish.jpeg') }}" alt="Client Name 3"
                                 class="rounded-circle mb-3 mx-auto d-block"
                                 style="width: 120px; height: 120px; object-fit: cover; border: 3px solid #b30000;">
                             <p class="card-text fst-italic">
                                 “Working with your team has been an absolute pleasure. Their dedication and professionalism
                                 helped us save countless lives through blood donation campaigns.” </p>
-                            <h5 class="card-title mt-3 mb-0">— Michael Lee</h5>
+                            <h5 class="card-title mt-3 mb-0">— Jenish Maharjan</h5>
                             <small class="text-muted">Volunteer</small>
                         </div>
                     </div>
@@ -251,4 +252,6 @@
         });
     @endif
 </script>
+
+
 

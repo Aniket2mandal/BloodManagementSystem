@@ -12,7 +12,7 @@ class BloodbankController extends Controller
 {
     public function index()
     {
-        $bloodbanks = Bloodbank::paginate(10);
+        $bloodbanks = Bloodbank::paginate(5);
         return view('backend.bloodbank.index', compact('bloodbanks'));
     }
 
@@ -45,9 +45,9 @@ class BloodbankController extends Controller
         }
         $purifier = new HTMLPurifier();
         $cleanDescription = $purifier->purify($request->description);
-
-        $coords = GeoHelper::getCoordinates($request->city);
-
+        $fullAddress= $request->city . ', ' . $request->district . ', ' . $request->state.', Nepal';
+        $coords = GeoHelper::getCoordinates($fullAddress);
+        
         $bloodbank = new Bloodbank();
         $bloodbank->name = $request->name;
         $bloodbank->district = $request->district;
@@ -103,7 +103,8 @@ class BloodbankController extends Controller
         $purifier = new HTMLPurifier();
         $cleanDescription = $purifier->purify($request->description);
 
-        $coords = GeoHelper::getCoordinates($request->city);
+        $fullAddress= $request->city . ', ' . $request->district . ', ' . $request->state.', Nepal';
+        $coords = GeoHelper::getCoordinates($fullAddress);
 
         $bloodbank->name = $request->name;
         $bloodbank->district = $request->district;

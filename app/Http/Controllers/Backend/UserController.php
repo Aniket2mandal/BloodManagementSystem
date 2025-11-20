@@ -15,7 +15,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $user = User::where('email', '!=', 'super@gmail.com')->where('email', '!=', auth()->user()->email)->latest()->paginate(10);
+        $user = User::where('email', '!=', 'super@gmail.com')->where('email', '!=', auth()->user()->email)->latest()->paginate(5);
         return view('backend.user.index', compact('user'));
     }
 
@@ -32,8 +32,8 @@ class UserController extends Controller
     {
         // dd($request->all());
         $request->validate([
-            'Name' => 'required|string',
-            'Email' => 'required|email',
+            'Name' => ['required', 'string', 'regex:/^[A-Za-z\s]+$/'],
+            'Email' => ['required', 'email', 'regex:/^[A-Za-z][A-Za-z._]*@[A-Za-z]+\.[A-Za-z]{2,}$/'],
             'password' => 'required|min:8|confirmed', // No need for custom rules here
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'Status' => 'integer',

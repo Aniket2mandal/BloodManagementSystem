@@ -14,7 +14,7 @@ class BloodController extends Controller
 {
     public function index()
     {
-        $blood = Blood::with('bloodBanks')->paginate(10);
+        $blood = Blood::with('bloodBanks')->paginate(5);
         // dd($blood);
         $user = auth()->user();
         $userBloodBanks = $user->bloodBank()->where('status', 1)->get();

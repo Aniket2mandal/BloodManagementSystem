@@ -11,25 +11,14 @@
         </nav>
         <!-- Blood Bank Image -->
 
-        @foreach ($blood->bloodBanks as $bloodBank)
-            @if ($bloodBank->image)
-                <div class="row mb-4">
-                    <div class="col-12">
-                        <img src="{{ asset('images/bloodbank/' . $bloodBank->image) }}" class="img-fluid w-100 rounded"
-                            alt="Blood Bank Image">
-                    </div>
-                </div>
-           
-            @else
-                <div class="row mb-4">
+
+                {{-- <div class="row mb-4">
                     <div class="col-12">
                         <img src="{{ asset('images/bloodbank/default.jpg') }}" class="img-fluid w-100 rounded"
                             style="height:600px; width:100px;" alt="Default Blood Bank Image">
                     </div>
-                </div>
-                @endif
-        @endforeach
-
+                </div> --}}
+            
         <!-- Main Content -->
 
         <div class="row g-4">

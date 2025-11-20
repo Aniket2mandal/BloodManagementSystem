@@ -9,6 +9,7 @@ class GeoHelper
     {
         $location = urlencode($location);
         $url = "https://nominatim.openstreetmap.org/search?q={$location}&format=json&limit=1";
+        // dd($url);
 
         $opts = [
             "http" => [
@@ -46,6 +47,7 @@ class GeoHelper
              sin($dLon / 2) * sin($dLon / 2);
 
         $c = 2 * atan2(sqrt($a), sqrt(1 - $a));
+        // print_r($c.',');
 
         return $earthRadius * $c;  // distance in km
     }

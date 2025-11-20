@@ -25,14 +25,17 @@ class FrontBloodBankController extends Controller
         return view('frontend.bloodbank.detail',compact('bloodbank', 'camps'));
     }
 
+    
     public function searchBlood(Request $request)
     {
         // dd($request->all());
         $district = $request->input('district');
         $state = $request->input('state');
         // $bloodgroup = $request->input('group');
-        $currentLocation = $request->input('location');
-        
+        $Location = $request->input('location');
+        // dd($currentLocation);
+        $currentLocation=$Location.','.'Nepal';
+        // dd($currentLocation);
         if (!$district || !$state  || !$currentLocation) {
             return response()->json(['error' => 'Missing required parameters'], 400);
         }

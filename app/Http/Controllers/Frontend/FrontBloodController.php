@@ -24,7 +24,8 @@ class FrontBloodController extends Controller
         $district = $request->input('district');
         $state = $request->input('state');
         $bloodgroup = $request->input('group');
-        $currentLocation = $request->input('location');
+        $Location = $request->input('location');
+        $currentLocation=$Location.','.'Nepal';
         
         if (!$district || !$state || !$bloodgroup || !$currentLocation) {
             return response()->json(['error' => 'Missing required parameters'], 400);
