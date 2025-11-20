@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class BloodcampController extends Controller
 {
     public function index(){
-        $camps=Camp::with('bloodBanks')->paginate(10);
+        $camps=Camp::with('bloodBanks')->paginate(5);
         // dd($camps);
         return view('backend.bloodcamps.index',compact('camps'));
     }

@@ -16,7 +16,7 @@ class DonorController extends Controller
 
         // $bloodbank
     // $donor=Donor::with('');
-    $donor=Donor::with('bloodBanks')->latest()->paginate(10);
+    $donor=Donor::with('bloodBanks')->latest()->paginate(5);
     // $bloodbanks=Bloodbank::where('status',1)->get();
     $user = auth()->user();
     $userBloodBanks = $user->bloodBank()->where('status', 1)->get();

@@ -97,14 +97,14 @@
                                     <div class="mb-3">
                                         <label for="location" class="form-label">Enter your location</label>
                                         <input type="text" class="form-control" id="location" name="location"
-                                            placeholder="City, district, or address" />
+                                            placeholder="City, district,state" />
 
                                     </div>
 
 
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">cancel</button>
+                                    <button type="button" class="btn btn-danger" id="cancel" data-bs-dismiss="modal">cancel</button>
                                     <button type="submit" class="btn btn-danger">Search</button>
                                 </div>
                             </form>
@@ -224,6 +224,10 @@
         $(document).ready(function() {
             $('.reset').on('click', function() {
                 location.reload();
+                $('#locationForm')[0].reset();
+            });
+            $('#cancel').on('click', function() {
+                $('#locationForm')[0].reset();
             });
         });
     </script>

@@ -64,3 +64,33 @@
 
     margin-bottom:20px;
 }
+
+.custom-hover {
+    transition: all 0.3s ease-in-out;
+}
+.custom-hover:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3) !important;
+    transform: translateY(-4px); /* optional lift effect */
+}
+
+/* Add smooth transition for all cards inside this section */
+section .card {
+    transition: all 0.3s ease-in-out;
+}
+
+/* On hover, increase shadow and lift slightly */
+section .card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3) !important;
+    transform: translateY(-4px); /* optional lift effect */
+}
+
+/* Smooth hover effect for testimonial cards */
+.grey-strip .card {
+    transition: all 0.3s ease-in-out;
+}
+
+/* On hover, increase shadow and lift */
+.grey-strip .card:hover {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3) !important;
+    transform: translateY(-4px); /* optional lift effect */
+}

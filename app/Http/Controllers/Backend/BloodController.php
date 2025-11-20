@@ -13,7 +13,11 @@ class BloodController extends Controller
 {
     public function index()
     {
+<<<<<<< HEAD
         $blood = Blood::with('bloodBanks')->get();
+=======
+        $blood = Blood::with('bloodBanks')->paginate(5);
+>>>>>>> 643d1cb (new file added)
         // dd($blood);
         return view('backend.blood.index', compact('blood'));
     }

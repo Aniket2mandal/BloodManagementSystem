@@ -150,7 +150,7 @@
                                         <a href="{{ route('frontblood.detail', $bloods->id) }}"
                                             class="btn btn-outline-danger btn-sm">Details</a>
                                         <button class="btn btn-sm text-white" style="background-color: #2e4a5b;">
-                                            ✈️ 8771.03 kms
+                                            ✈️ 0.00 kms
                                         </button>
                                     </div>
                                 </div>
