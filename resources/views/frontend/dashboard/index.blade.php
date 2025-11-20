@@ -13,7 +13,7 @@
                     Every donation saves lives, supports surgeries, and aids patients battling serious illnesses.
                     Join us in making a meaningful impact with just one simple act.</p>
                 <div class="hero-buttons">
-                    <a href="{{ route('about.index') }}" class="btn signup">Learn More</a>
+                    <a href="#testimonial" class="btn signup">Experience</a>
                     <a href="{{ route('about.index') }}" class="btn login">Learn More</a>
                 </div>
             </div>
@@ -113,7 +113,7 @@
 
 
                             <!-- Card 3 -->
-                            <div class="card shadow-sm p-3 d-flex flex-row align-items-center justify-content-between mb-3">
+                            {{-- <div class="card shadow-sm p-3 d-flex flex-row align-items-center justify-content-between mb-3">
                                 <!-- Icon -->
                                 <div class="me-3">
                                     <i class="bi bi-droplet-fill text-danger fs-1"></i>
@@ -128,14 +128,17 @@
                                 <div>
                                     <a href="#" class="btn btn-danger btn-sm" data-bs-toggle="modal"
                                         data-bs-target="#locationModal">My Donation</a>
-                                </div>
+                                </div> --}}
+
+                                
                                 {{-- MODAL --}}
-                                <div class="modal fade" id="locationModal" tabindex="-1"
-                                    aria-labelledby="locationModalLabel" aria-hidden="true">
+
+                                {{-- <div class="modal fade" id="locationModalDonor" tabindex="-1"
+                                    aria-labelledby="locationModalDonorLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content border-0 rounded">
                                             <div class="modal-header bg-danger text-white">
-                                                <h5 class="modal-title" id="locationModalLabel">Donation Detail</h5>
+                                                <h5 class="modal-title" id="locationModalDonorLabel">Donation Detail</h5>
                                                 <button type="button" class="btn-close btn-close-white"
                                                     data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
@@ -162,7 +165,7 @@
                                             </form>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
 
                             </div>
 
@@ -176,7 +179,7 @@
 
 
     <!-- Grey Strip -->
-    <div class="grey-strip py-5" style="background-color: #6c757d;">
+    <div class="grey-strip py-5" id="testimonial" style="background-color: #6c757d;">
         <div class="container">
             <div class="row justify-content-center g-4">
 
@@ -236,35 +239,7 @@
 @endsection
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#locationForm').on('submit', function(e) {
-            e.preventDefault();
 
-            let formData = $(this).serialize();
-            console.log(formData);
-            $('#locationModal').modal('hide');
-            $.ajax({
-                method: 'POST',
-                url: '/donor/login',
-                data: formData,
-
-                success: function(response) {
-                    window.location.href = "/donor/dashboard";
-                },
-                error: function(xhr) {
-                    swal.fire({
-                        title: 'Error',
-                        text: 'Login failed: ' + (xhr.responseJSON?.message || 'Something went wrong.'),
-                        icon: 'error',
-                        confirmButtonText: 'OK'
-                    });
-                }
-            });
-
-        });
-    });
-</script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>

@@ -42,6 +42,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', [DashboardFrontController::class, 'index'])->name('frontdashboard.index');
+Route::get('/services', [DashboardFrontController::class, 'services'])->name('frontdashboard.services');
 Route::get('/about', [AboutController::class, 'index'])->name('about.index');
 // FRONTEND BLOOD
 Route::get('blood/search', [FrontBloodController::class, 'index'])->name('frontblood.index');

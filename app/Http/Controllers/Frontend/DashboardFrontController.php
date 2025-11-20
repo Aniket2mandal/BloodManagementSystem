@@ -21,4 +21,9 @@ class DashboardFrontController extends Controller
         $camps=Camp::with('bloodBanks') ->whereDate('date', '>', $today)->get();
         return view('frontend.dashboard.index',compact('camps', 'pastCamps'));
     }
+
+    public function services()
+    {
+        return view('frontend.dashboard.service');
+    }
 }

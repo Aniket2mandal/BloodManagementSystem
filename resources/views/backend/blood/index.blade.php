@@ -95,14 +95,13 @@
                                 @foreach ($donatedByGroup as $donatedGroup => $donatedBanks)
                                     @if ($bloods->name == $donatedGroup)
                                         @foreach ($donatedBanks as $bankName => $quantity)
-                                            @if ($bank->name == $bankName && $bank->name == $bankName)
+                                            @if ($bank->name == $bankName)
                                                {{ $quantity +$bank->pivot->quantity}} pint <br>
                                             @endif
                                         @endforeach
                                     @endif
                                 @endforeach
                             @endforeach
-
                             @endif
                         </td>
 
