@@ -14,7 +14,7 @@ class BloodController extends Controller
 {
     public function index()
     {
-        $blood = Blood::with('bloodBanks')->get();
+        $blood = Blood::with('bloodBanks')->paginate(5);
         // dd($blood);
         $user = auth()->user();
         $userBloodBanks = $user->bloodBank()->where('status', 1)->get();
@@ -23,20 +23,20 @@ class BloodController extends Controller
         ->groupBy('blood') // Group by blood type
         ->map(function ($donors) {
             $bloodBankQuantities = [];
-    
+
             foreach ($donors as $donor) {
                 foreach ($donor->bloodBanks as $bloodBank) {
                     $bankName = $bloodBank->name;
                     $quantity = $bloodBank->pivot->quantity_donated ?? 0;
-    
+
                     if (!isset($bloodBankQuantities[$bankName])) {
                         $bloodBankQuantities[$bankName] = 0;
                     }
-    
+
                     $bloodBankQuantities[$bankName] += $quantity;
                 }
             }
-    
+
             return $bloodBankQuantities;
         });
 
@@ -66,7 +66,7 @@ class BloodController extends Controller
 
         // dd($request);
         // Check for existing blood type in the selected blood banks
-        
+
         // foreach ($request->bloodbank as $bloodbankId) {
         //     $existingBlood = DB::table('blood_bloodbanks')
         //         ->where('blood_id', $request->blood_id)  // or $request->name if using name as identifier
@@ -81,7 +81,7 @@ class BloodController extends Controller
         $blood = new Blood;
         $blood->name = $request->name;
         $blood->status = $request->status;
-        $blood->description = $request->description; 
+        $blood->description = $request->description;
         $blood->save();
 
         // Assign the same quantity to all bloodbanks
@@ -107,7 +107,7 @@ class BloodController extends Controller
      $bloodbank=Bloodbank::all();
     //  dd($blood);
     return view('backend.blood.edit',compact('blood','bloodbank','quantity'));
-     
+
     }
 
     public function update(Request $request,$id){
@@ -132,10 +132,10 @@ class BloodController extends Controller
             // foreach ($request->bloodbank as $bloodbankId) {
             //     $bloodBankData[$bloodbankId] = ['quantity' => $request->quantity]; // Using the single quantity
             // }
-    
+
             // $blood->bloodBanks()->sync($bloodBankData);
 
-            return redirect()->route('blood.index')->with('success', 'Blood Updated Successfully');            
+            return redirect()->route('blood.index')->with('success', 'Blood Updated Successfully');
         } else {
             return redirect()->back()->with('error', 'Blood not found.');
         }
@@ -182,10 +182,10 @@ class BloodController extends Controller
         ]);
         // dd($request->all());
         $blood = Blood::find($request->blood_id);
-    
+
         // Check if this bloodbank already has this blood
         $exists = $blood->bloodBanks()->where('bloodbank_id', $request->bloodbank)->exists();
-    
+
         if ($exists) {
             // Update existing pivot record
             $blood->bloodBanks()->updateExistingPivot($request->bloodbank, [
@@ -197,13 +197,13 @@ class BloodController extends Controller
                 'quantity' => $request->quantity,
             ]);
         }
-    
+
         return response()->json([
             'success' => true,
             'message' => $exists ? 'Blood quantity updated successfully' : 'Blood bank added successfully',
         ]);
     }
-    
+
 
 }
 
@@ -248,7 +248,7 @@ class BloodController extends Controller
 
 //         // dd($request);
 //         // Check for existing blood type in the selected blood banks
-        
+
 //         // foreach ($request->bloodbank as $bloodbankId) {
 //         //     $existingBlood = DB::table('blood_bloodbanks')
 //         //         ->where('blood_id', $request->blood_id)  // or $request->name if using name as identifier
@@ -263,7 +263,7 @@ class BloodController extends Controller
 //         $blood = new Blood;
 //         $blood->name = $request->name;
 //         $blood->status = $request->status;
-//         $blood->description = $request->description; 
+//         $blood->description = $request->description;
 //         $blood->save();
 
 //         // Assign the same quantity to all bloodbanks
@@ -289,7 +289,7 @@ class BloodController extends Controller
 //      $bloodbank=Bloodbank::all();
 //     //  dd($blood);
 //     return view('backend.blood.edit',compact('blood','bloodbank','quantity'));
-     
+
 //     }
 
 //     public function update(Request $request,$id){
@@ -314,10 +314,10 @@ class BloodController extends Controller
 //             foreach ($request->bloodbank as $bloodbankId) {
 //                 $bloodBankData[$bloodbankId] = ['quantity' => $request->quantity]; // Using the single quantity
 //             }
-    
+
 //             $blood->bloodBanks()->sync($bloodBankData);
 
-//             return redirect()->route('blood.index')->with('success', 'Blood Updated Successfully');            
+//             return redirect()->route('blood.index')->with('success', 'Blood Updated Successfully');
 //         } else {
 //             return redirect()->back()->with('error', 'Blood not found.');
 //         }
@@ -352,6 +352,6 @@ class BloodController extends Controller
 //         return response()->json(['success' => false], 404);
 //     }
 
-    
+
 // }
 
